@@ -1,56 +1,95 @@
----
-description: Convert existing tasks into actionable, dependency-ordered GitHub issues for the feature based on available design artifacts.
-tools: ['github/github-mcp-server/issue_write']
----
-
-## User Input
-
-```text
-$ARGUMENTS
-```
-
-You **MUST** consider the user input before proceeding (if not empty).
-
-## Outline
-
-1. Run `.specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks` from repo root and parse FEATURE_DIR and AVAILABLE_DOCS list. All paths must be absolute. For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
-1. From the executed script, extract the path to **tasks**.
-1. Get the Git remote by running:
-
-```bash
-git config --get remote.origin.url
-```
-
-> [!CAUTION]
-> ONLY PROCEED TO NEXT STEPS IF THE REMOTE IS A GITHUB URL
-
-1. For each task in the list, use the GitHub MCP server to create a new issue in the repository that is representative of the Git remote.
-
-> [!CAUTION]
-> UNDER NO CIRCUMSTANCES EVER CREATE ISSUES IN REPOSITORIES THAT DO NOT MATCH THE REMOTE URL
+# Claude Command: Convert Tasks to Issues  
+### Phase I — In-Memory Python Console App
 
 ---
 
-As the main request completes, you MUST create and complete a PHR (Prompt History Record) using agent‑native tools when possible.
+## 1. Context
 
-1) Determine Stage
-   - Stage: constitution | spec | plan | tasks | red | green | refactor | explainer | misc | general
+This command converts **in-memory tasks** into issue entries suitable for tracking or reporting.
 
-2) Generate Title and Determine Routing:
-   - Generate Title: 3–7 words (slug for filename)
-   - Route is automatically determined by stage:
-     - `constitution` → `history/prompts/constitution/`
-     - Feature stages → `history/prompts/<feature-name>/` (spec, plan, tasks, red, green, refactor, explainer, misc)
-     - `general` → `history/prompts/general/`
+It is governed by:  
+- `constitution.md` (Phase I)  
+- Spec-Kit Plus rules  
+- Claude Code execution model  
 
-3) Create and Fill PHR (Shell first; fallback agent‑native)
-   - Run: `.specify/scripts/bash/create-phr.sh --title "<title>" --stage <stage> [--feature <name>] --json`
-   - Open the file and fill remaining placeholders (YAML + body), embedding full PROMPT_TEXT (verbatim) and concise RESPONSE_TEXT.
-   - If the script fails:
-     - Read `.specify/templates/phr-template.prompt.md` (or `templates/…`)
-     - Allocate an ID; compute the output path based on stage from step 2; write the file
-     - Fill placeholders and embed full PROMPT_TEXT and concise RESPONSE_TEXT
+---
 
-4) Validate + report
-   - No unresolved placeholders; path under `history/prompts/` and matches stage; stage/title/date coherent; print ID + path + stage + title.
-   - On failure: warn, don't block. Skip only for `/sp.phr`.
+## 2. Objective
+
+Automate the process of transforming **Add Task / View Task entries** into structured issue objects without modifying in-memory task data.
+
+---
+
+## 3. Preconditions
+
+- Application is running in terminal  
+- In-memory task collection exists  
+- Tasks have valid IDs and titles  
+
+---
+
+## 4. Command Steps
+
+### Step 1: Retrieve Tasks
+- [ ] Access in-memory task list  
+- [ ] Ensure no tasks are modified  
+
+### Step 2: Transform to Issue Objects
+- [ ] Map task properties to issue properties:  
+  - `id` → `issue_id`  
+  - `title` → `summary`  
+  - `description` → `details`  
+  - `completed` → `status` (`Open` / `Closed`)  
+- [ ] Maintain order of tasks  
+
+### Step 3: Output Issues
+- [ ] Generate issue objects in a structured format (JSON, Markdown, or console table)  
+- [ ] Display or return issues without modifying original tasks  
+
+---
+
+## 5. Postconditions
+
+- Original in-memory tasks remain unchanged  
+- Issue objects correctly reflect task data  
+- Program continues running  
+
+---
+
+## 6. Error Handling
+
+- [ ] Handle empty task list gracefully  
+- [ ] Validate all task fields before conversion  
+- [ ] No application crashes allowed  
+
+---
+
+## 7. Constraints
+
+- In-memory storage only  
+- Console input/output only  
+- No persistence or external services  
+- Must comply with Phase I specifications  
+
+---
+
+## 8. Acceptance Criteria
+
+- [ ] Tasks converted to issue objects correctly  
+- [ ] Empty task list handled gracefully  
+- [ ] Conversion does not modify original tasks  
+- [ ] Output is structured and readable  
+- [ ] Implementation is fully spec-driven  
+
+---
+
+## 9. Traceability
+
+This command traces to:  
+- `constitution.md` (Phase I)  
+- Task specifications (`tasks-template.md`)  
+- Plan and checklist templates  
+
+---
+
+**End of sp.taskstoissues.md**

@@ -1,104 +1,102 @@
-# Implementation Plan: [FEATURE]
+# Implementation Plan Template  
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+---
 
-**Note**: This template is filled in by the `/sp.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
+## Feature: [Feature Name]  
+### Phase I — In-Memory Python Console App
 
-## Summary
+---
 
-[Extract from feature spec: primary requirement + technical approach from research]
+### 1. Context
 
-## Technical Context
+This plan outlines the step-by-step approach to implement the **[Feature Name]** feature for **Phase I** of *The Evolution of Todo* project.
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
+This plan is governed by:  
+- `constitution.md` (Phase I)  
+- Spec-Kit Plus rules  
+- Claude Code execution model  
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+---
 
-## Constitution Check
+### 2. Objective
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+Describe the implementation goal for the feature clearly and concisely.
 
-[Gates determined based on constitution file]
+---
 
-## Project Structure
+### 3. Preconditions
 
-### Documentation (this feature)
+- Application running in terminal  
+- Required in-memory data structures exist  
+- User has selected the corresponding menu option  
 
-```text
-specs/[###-feature]/
-├── plan.md              # This file (/sp.plan command output)
-├── research.md          # Phase 0 output (/sp.plan command)
-├── data-model.md        # Phase 1 output (/sp.plan command)
-├── quickstart.md        # Phase 1 output (/sp.plan command)
-├── contracts/           # Phase 1 output (/sp.plan command)
-└── tasks.md             # Phase 2 output (/sp.tasks command - NOT created by /sp.plan)
-```
+---
 
-### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
+### 4. Implementation Steps
 
-```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
+#### Step 1: [Step Title]
+**Description:** Briefly describe the step.  
 
-tests/
-├── contract/
-├── integration/
-└── unit/
+**Inputs Required:** List any inputs needed from user or memory  
 
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
+**Process:** Describe how the step will be executed  
 
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
+**Outputs Produced:** Describe results of this step  
 
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
+---
 
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
-```
+#### Step 2: [Step Title]
+**Description:** ...  
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+**Inputs Required:** ...  
 
-## Complexity Tracking
+**Process:** ...  
 
-> **Fill ONLY if Constitution Check has violations that must be justified**
+**Outputs Produced:** ...  
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+---
+
+*(Add more steps as needed)*
+
+---
+
+### 5. Dependencies
+
+- List dependencies on other features or tasks  
+- Include in-memory structures, prior tasks, or utilities  
+
+---
+
+### 6. Error Handling Plan
+
+- List errors that may occur during each step  
+- Include mitigation or recovery actions  
+
+---
+
+### 7. Technical Constraints
+
+- In-memory storage only  
+- Console input/output only  
+- No external services, persistence, or advanced fields  
+- Must follow Phase I specifications  
+
+---
+
+### 8. Validation & Verification
+
+- Describe how each step or the feature as a whole will be tested  
+- Include expected outputs and success criteria  
+
+---
+
+### 9. Traceability
+
+This plan traces to:  
+- `constitution.md` (Phase I)  
+- Feature specification (`spec-template.md`)  
+- Tasks and checklist templates  
+
+---
+
+**End of Implementation Plan Template**

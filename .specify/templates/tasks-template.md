@@ -1,251 +1,282 @@
----
-
-description: "Task list template for feature implementation"
----
-
-# Tasks: [FEATURE NAME]
-
-**Input**: Design documents from `/specs/[###-feature-name]/`
-**Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
-
-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
-
-**Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
-
-## Format: `[ID] [P?] [Story] Description`
-
-- **[P]**: Can run in parallel (different files, no dependencies)
-- **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
-- Include exact file paths in descriptions
-
-## Path Conventions
-
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
-
-<!-- 
-  ============================================================================
-  IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
-  
-  The /sp.tasks command MUST replace these with actual tasks based on:
-  - User stories from spec.md (with their priorities P1, P2, P3...)
-  - Feature requirements from plan.md
-  - Entities from data-model.md
-  - Endpoints from contracts/
-  
-  Tasks MUST be organized by user story so each story can be:
-  - Implemented independently
-  - Tested independently
-  - Delivered as an MVP increment
-  
-  DO NOT keep these sample tasks in the generated tasks.md file.
-  ============================================================================
--->
-
-## Phase 1: Setup (Shared Infrastructure)
-
-**Purpose**: Project initialization and basic structure
-
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+# Tasks Specification  
 
 ---
 
-## Phase 2: Foundational (Blocking Prerequisites)
-
-**Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
-
-**⚠️ CRITICAL**: No user story work can begin until this phase is complete
-
-Examples of foundational tasks (adjust based on your project):
-
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
-
-**Checkpoint**: Foundation ready - user story implementation can now begin in parallel
+## Feature: Add Task  
+### Phase I — In-Memory Python Console App
 
 ---
 
-## Phase 3: User Story 1 - [Title] (Priority: P1) 🎯 MVP
+### 1. Context
 
-**Goal**: [Brief description of what this story delivers]
+This specification defines the work required to implement the **Add Task** feature for **Phase I** of *The Evolution of Todo* project.
 
-**Independent Test**: [How to verify this story works on its own]
-
-### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️
-
-> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
-
-- [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
-
-### Implementation for User Story 1
-
-- [ ] T012 [P] [US1] Create [Entity1] model in src/models/[entity1].py
-- [ ] T013 [P] [US1] Create [Entity2] model in src/models/[entity2].py
-- [ ] T014 [US1] Implement [Service] in src/services/[service].py (depends on T012, T013)
-- [ ] T015 [US1] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T016 [US1] Add validation and error handling
-- [ ] T017 [US1] Add logging for user story 1 operations
-
-**Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
+This feature is governed by:  
+- `constitution.md` (Phase I)  
+- Spec-Kit Plus rules  
+- Claude Code execution model  
 
 ---
 
-## Phase 4: User Story 2 - [Title] (Priority: P2)
+### 2. Objective
 
-**Goal**: [Brief description of what this story delivers]
+Enable a user to add a new todo task via the console.
 
-**Independent Test**: [How to verify this story works on its own]
-
-### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
-
-- [ ] T018 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T019 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
-
-### Implementation for User Story 2
-
-- [ ] T020 [P] [US2] Create [Entity] model in src/models/[entity].py
-- [ ] T021 [US2] Implement [Service] in src/services/[service].py
-- [ ] T022 [US2] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T023 [US2] Integrate with User Story 1 components (if needed)
-
-**Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
+Tasks must be stored **in memory only** and must be accessible to other Phase I features (view, update, delete, mark complete).
 
 ---
 
-## Phase 5: User Story 3 - [Title] (Priority: P3)
+### 3. Preconditions
 
-**Goal**: [Brief description of what this story delivers]
-
-**Independent Test**: [How to verify this story works on its own]
-
-### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
-
-- [ ] T024 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T025 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
-
-### Implementation for User Story 3
-
-- [ ] T026 [P] [US3] Create [Entity] model in src/models/[entity].py
-- [ ] T027 [US3] Implement [Service] in src/services/[service].py
-- [ ] T028 [US3] Implement [endpoint/feature] in src/[location]/[file].py
-
-**Checkpoint**: All user stories should now be independently functional
+- Application is running in a terminal  
+- In-memory task collection exists  
+- User has selected the “Add Task” option from the menu  
 
 ---
 
-[Add more user story phases as needed, following the same pattern]
+### 4. Tasks Breakdown
+
+#### Task 1: Prompt for Task Title
+**Description:** Prompt the user to enter a task title.  
+
+**Rules:**  
+- Title is required  
+- Empty or whitespace-only input is invalid  
+- Re-prompt until a valid title is provided  
+
+**Output:** Valid task title string  
 
 ---
 
-## Phase N: Polish & Cross-Cutting Concerns
+#### Task 2: Prompt for Task Description
+**Description:** Prompt the user to enter an optional task description.  
 
-**Purpose**: Improvements that affect multiple user stories
+**Rules:**  
+- Description may be empty  
+- Empty input is stored as an empty string  
 
-- [ ] TXXX [P] Documentation updates in docs/
-- [ ] TXXX Code cleanup and refactoring
-- [ ] TXXX Performance optimization across all stories
-- [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
-- [ ] TXXX Security hardening
-- [ ] TXXX Run quickstart.md validation
+**Output:** Task description string (possibly empty)  
 
 ---
 
-## Dependencies & Execution Order
+#### Task 3: Generate Task ID
+**Description:** Generate a unique identifier for the task.  
 
-### Phase Dependencies
+**Rules:**  
+- ID must be an integer  
+- IDs start at `1` and increment sequentially  
+- IDs are not reused during a single program run  
 
-- **Setup (Phase 1)**: No dependencies - can start immediately
-- **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories
-- **User Stories (Phase 3+)**: All depend on Foundational phase completion
-  - User stories can then proceed in parallel (if staffed)
-  - Or sequentially in priority order (P1 → P2 → P3)
-- **Polish (Final Phase)**: Depends on all desired user stories being complete
-
-### User Story Dependencies
-
-- **User Story 1 (P1)**: Can start after Foundational (Phase 2) - No dependencies on other stories
-- **User Story 2 (P2)**: Can start after Foundational (Phase 2) - May integrate with US1 but should be independently testable
-- **User Story 3 (P3)**: Can start after Foundational (Phase 2) - May integrate with US1/US2 but should be independently testable
-
-### Within Each User Story
-
-- Tests (if included) MUST be written and FAIL before implementation
-- Models before services
-- Services before endpoints
-- Core implementation before integration
-- Story complete before moving to next priority
-
-### Parallel Opportunities
-
-- All Setup tasks marked [P] can run in parallel
-- All Foundational tasks marked [P] can run in parallel (within Phase 2)
-- Once Foundational phase completes, all user stories can start in parallel (if team capacity allows)
-- All tests for a user story marked [P] can run in parallel
-- Models within a story marked [P] can run in parallel
-- Different user stories can be worked on in parallel by different team members
+**Output:** Unique task ID  
 
 ---
 
-## Parallel Example: User Story 1
+#### Task 4: Create Task Object
+**Description:** Create a new task using the collected inputs.  
 
-```bash
-# Launch all tests for User Story 1 together (if tests requested):
-Task: "Contract test for [endpoint] in tests/contract/test_[name].py"
-Task: "Integration test for [user journey] in tests/integration/test_[name].py"
+**Rules:**  
+- Task must include: `id`, `title`, `description`, `completed`  
+- `completed` must be initialized to `false`  
 
-# Launch all models for User Story 1 together:
-Task: "Create [Entity1] model in src/models/[entity1].py"
-Task: "Create [Entity2] model in src/models/[entity2].py"
-```
+**Output:** Valid in-memory task object  
 
 ---
 
-## Implementation Strategy
+#### Task 5: Store Task In Memory
+**Description:** Add the task to the in-memory task collection.  
 
-### MVP First (User Story 1 Only)
+**Rules:**  
+- No persistence is allowed  
+- No external storage may be used  
 
-1. Complete Phase 1: Setup
-2. Complete Phase 2: Foundational (CRITICAL - blocks all stories)
-3. Complete Phase 3: User Story 1
-4. **STOP and VALIDATE**: Test User Story 1 independently
-5. Deploy/demo if ready
-
-### Incremental Delivery
-
-1. Complete Setup + Foundational → Foundation ready
-2. Add User Story 1 → Test independently → Deploy/Demo (MVP!)
-3. Add User Story 2 → Test independently → Deploy/Demo
-4. Add User Story 3 → Test independently → Deploy/Demo
-5. Each story adds value without breaking previous stories
-
-### Parallel Team Strategy
-
-With multiple developers:
-
-1. Team completes Setup + Foundational together
-2. Once Foundational is done:
-   - Developer A: User Story 1
-   - Developer B: User Story 2
-   - Developer C: User Story 3
-3. Stories complete and integrate independently
+**Output:** Updated in-memory task list  
 
 ---
 
-## Notes
+#### Task 6: Confirm Task Creation
+**Description:** Display confirmation to the user.  
 
-- [P] tasks = different files, no dependencies
-- [Story] label maps task to specific user story for traceability
-- Each user story should be independently completable and testable
-- Verify tests fail before implementing
-- Commit after each task or logical group
-- Stop at any checkpoint to validate story independently
-- Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence
+**Rules:**  
+- Must confirm success  
+- Must display task ID and title  
+
+**Example Output (Illustrative):**  
+*(e.g., "Task #3 'Buy Groceries' added successfully")*  
+
+---
+
+### 5. Postconditions
+
+- Task exists in memory  
+- Task can be viewed, updated, deleted, and marked complete  
+- Program continues running without exiting  
+
+---
+
+### 6. Error Handling
+
+#### Empty Title
+- Display error message  
+- Re-prompt user for valid title  
+- Application must not crash  
+
+No other error handling is required for Phase I.  
+
+---
+
+### 7. Constraints
+
+- In-memory storage only  
+- Console input/output only  
+- No advanced fields (dates, priorities, tags)  
+- No persistence or external services  
+- No manual code edits  
+
+---
+
+### 8. Acceptance Criteria
+
+Feature is complete when:  
+- User can successfully add a task  
+- Each task receives a unique ID  
+- Tasks are stored in memory  
+- Empty titles are rejected  
+- Confirmation is displayed  
+- Implementation is fully spec-driven  
+
+---
+
+### 9. Traceability
+
+This specification traces to:  
+- `constitution.md` (Phase I)  
+- Spec-Kit Plus  
+- Claude Code execution model  
+
+---
+
+## Feature: View Tasks  
+### Phase I — In-Memory Python Console App
+
+---
+
+### 1. Context
+
+This specification defines the work required to implement the **View Tasks** feature for **Phase I** of *The Evolution of Todo* project.
+
+This feature is governed by:  
+- `constitution.md` (Phase I)  
+- Spec-Kit Plus rules  
+- Claude Code execution model  
+
+---
+
+### 2. Objective
+
+Enable a user to view all existing todo tasks via the console.
+
+Tasks must be retrieved from **in-memory storage only** and displayed without modifying their data.
+
+---
+
+### 3. Preconditions
+
+- Application is running in a terminal  
+- In-memory task collection exists  
+- User has selected the “View Tasks” option from the menu  
+
+---
+
+### 4. Tasks Breakdown
+
+#### Task 1: Retrieve Tasks From Memory
+**Description:** Access the in-memory task collection.  
+
+**Rules:**  
+- Tasks must be read-only  
+- No task data may be modified  
+
+**Output:** In-memory list of task objects  
+
+---
+
+#### Task 2: Handle Empty Task List
+**Description:** Check whether any tasks exist.  
+
+**Rules:**  
+- If no tasks exist, display a clear message  
+- Application must continue running  
+
+**Output:** Console message indicating no tasks  
+
+---
+
+#### Task 3: Display Tasks
+**Description:** Display all tasks to the user.  
+
+**Rules:**  
+- Each task must display: Task ID, title, completion status  
+- Task descriptions may be displayed if present  
+
+**Status Rules:**  
+- `completed = false` → Not completed  
+- `completed = true` → Completed  
+
+**Output:** Formatted console output of tasks  
+
+---
+
+#### Task 4: Return Control to Menu
+**Description:** Return user to the main application flow after viewing tasks.  
+
+**Rules:** Viewing tasks must not exit the program  
+
+**Output:** Program continues running  
+
+---
+
+### 5. Postconditions
+
+- All tasks are displayed correctly  
+- No task data is modified  
+- Program remains active  
+
+---
+
+### 6. Error Handling
+
+- No error handling required beyond handling an empty task list  
+
+---
+
+### 7. Constraints
+
+- In-memory storage only  
+- Console input/output only  
+- No sorting or filtering  
+- No persistence or external services  
+- No manual code edits  
+
+---
+
+### 8. Acceptance Criteria
+
+Feature is complete when:  
+- Tasks are displayed correctly  
+- Empty task list is handled gracefully  
+- Task data remains unchanged  
+- Program continues running  
+- Implementation is fully spec-driven  
+
+---
+
+### 9. Traceability
+
+This specification traces to:  
+- `constitution.md` (Phase I)  
+- Spec-Kit Plus  
+- Claude Code execution model  
+
+---
+
+**End of Tasks Specification — View Tasks**

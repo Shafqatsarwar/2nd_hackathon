@@ -1,28 +1,105 @@
-# [PROJECT NAME] Development Guidelines
+# Agent File Template  
 
-Auto-generated from all feature plans. Last updated: [DATE]
+---
 
-## Active Technologies
+## Feature: [Feature Name] Agent  
+### Phase I — In-Memory Python Console App
 
-[EXTRACTED FROM ALL PLAN.MD FILES]
+---
 
-## Project Structure
+### 1. Context
 
-```text
-[ACTUAL STRUCTURE FROM PLANS]
-```
+This template defines the structure and responsibilities of the **[Feature Name] Agent** for **Phase I** of *The Evolution of Todo* project.
 
-## Commands
+This agent is governed by:  
+- `constitution.md` (Phase I)  
+- Spec-Kit Plus rules  
+- Claude Code execution model  
 
-[ONLY COMMANDS FOR ACTIVE TECHNOLOGIES]
+---
 
-## Code Style
+### 2. Objective
 
-[LANGUAGE-SPECIFIC, ONLY FOR LANGUAGES IN USE]
+Define the agent’s purpose: what it manages, validates, or executes within the feature.
 
-## Recent Changes
+---
 
-[LAST 3 FEATURES AND WHAT THEY ADDED]
+### 3. Preconditions
 
-<!-- MANUAL ADDITIONS START -->
-<!-- MANUAL ADDITIONS END -->
+- Application running in terminal  
+- Relevant in-memory structures exist  
+- Feature selection has occurred  
+
+---
+
+### 4. Responsibilities
+
+- **Input Handling:** Receive and validate user input  
+- **Processing:** Execute logic for the feature using in-memory data  
+- **Output:** Return results to console in specified format  
+- **Error Handling:** Handle errors gracefully without crashing the program  
+
+---
+
+### 5. Methods / Functions
+
+#### Method 1: `[method_name]`
+**Description:** Purpose of the method  
+
+**Inputs:** Required inputs or parameters  
+
+**Process:** Step-by-step logic  
+
+**Outputs:** Expected output  
+
+---
+
+#### Method 2: `[method_name]`
+**Description:** ...  
+
+**Inputs:** ...  
+
+**Process:** ...  
+
+**Outputs:** ...  
+
+---
+
+*(Add additional methods as needed)*
+
+---
+
+### 6. Dependencies
+
+- In-memory task structures  
+- Other agents or utility functions  
+- Feature specification (`spec-template.md`)  
+
+---
+
+### 7. Error Handling
+
+- List anticipated errors  
+- Include recovery or fallback strategies  
+
+---
+
+### 8. Constraints
+
+- In-memory storage only  
+- Console input/output only  
+- No persistence, external services, or manual code edits  
+- Must follow Phase I specifications  
+
+---
+
+### 9. Traceability
+
+This agent file traces to:  
+- `constitution.md` (Phase I)  
+- Feature specification (`spec-template.md`)  
+- Tasks and checklist templates  
+
+---
+
+**End of Agent File Template**

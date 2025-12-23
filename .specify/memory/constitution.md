@@ -1,55 +1,89 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Constitution: The Evolution of Todo
 
-## Core Principles
+## Project Overview
+This project simulates the real-world evolution of software, starting from a simple Python CLI tool and evolving into a Kubernetes-managed, event-driven, AI-powered distributed system.
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+## Core Mandates
+1. **Spec-Driven Development (SDD)**: All development MUST start with a specification.
+2. **Process**: Write Spec → Generate Plan → Break into Tasks → Implement via Claude Code.
+3. **No Manual Code**: Human editing of generated source code in `src/` is strictly prohibited.
+4. **Agentic Dev Stack**: Primarily using Claude Code and Spec-Kit Plus.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+---
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+## Phase I: Todo In-Memory Python Console App
+**Objective**: Build a command-line todo application that stores tasks in memory.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Requirements
+- **Features**: Implement 5 Basic Level features:
+  1. Add Task (Title and Description)
+  2. View Task List (with Status indicators)
+  3. Update Task Details
+  4. Delete Task by ID
+  5. Mark Task as Complete/Incomplete
+- **Deployment**: Local execution using Python 3.13+ and UV.
+- **Data**: In-memory storage only.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Technology Stack (Phase I)
+- **Runtime**: Python 3.13+
+- **Package Manager**: UV
+- **Tools**: Claude Code, Spec-Kit Plus
 
-### [PRINCIPLE_6_NAME]
+### Deliverables (Phase I)
+- `constitution.md`: Project principles (this file).
+- `/specs/`: Specification history folder containing all specification files.
+- `/src/`: Python source code (generated only).
+- `README.md`: Setup instructions.
+- `CLAUDE.md`: Claude Code usage instructions.
 
+---
 
-[PRINCIPLE__DESCRIPTION]
+## Phase II: Todo Full-Stack Web Application
+**Objective**: Transform the console app into a multi-user web application with persistent storage and authentication.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### Requirements
+- **Features**: All 5 Basic Level features implemented as a web application.
+- **Architecture**: RESTful API backend, Responsive frontend.
+- **Storage**: Neon Serverless PostgreSQL.
+- **Authentication**: User signup/signin using Better Auth (JWT-based).
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Technology Stack (Phase II)
+- **Frontend**: Next.js 16+ (App Router)
+- **Backend**: Python FastAPI
+- **ORM**: SQLModel
+- **Database**: Neon Serverless PostgreSQL
+- **Authentication**: Better Auth (Shared Secret JWT)
+- **AI Tools**: Claude Code + Spec-Kit Plus
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### API Endpoints (Phase II)
+- `GET /api/{user_id}/tasks`: List all tasks
+- `POST /api/{user_id}/tasks`: Create a new task
+- `GET /api/{user_id}/tasks/{id}`: Get task details
+- `PUT /api/{user_id}/tasks/{id}`: Update a task
+- `DELETE /api/{user_id}/tasks/{id}`: Delete a task
+- `PATCH /api/{user_id}/tasks/{id}/complete`: Toggle completion
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+---
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+## Development Environment (Windows Users)
+Windows users MUST use WSL 2 (Ubuntu 22.04) for consistency.
+- `wsl --install`
+- `wsl --set-default-version 2`
+- `wsl --install -d Ubuntu-22.04`
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+---
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+## Repository Structure
+```
+/
+├── history/           # Prompt History Records (PHR) and ADRs
+├── .specify/
+│   ├── templates/     # Spec-Kit Plus templates
+│   └── scripts/       # Automation scripts
+├── specs/             # Feature specifications and plans
+├── src/               # Generated source code
+├── constitution.md
+├── README.md
+├── CLAUDE.md
+└── pyproject.toml
+```

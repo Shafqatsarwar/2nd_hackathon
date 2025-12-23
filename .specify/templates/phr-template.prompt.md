@@ -1,45 +1,38 @@
----
-id: {{ID}}
-title: {{TITLE}}
-stage: {{STAGE}}
-date: {{DATE_ISO}}
-surface: {{SURFACE}}
-model: {{MODEL}}
-feature: {{FEATURE}}
-branch: {{BRANCH}}
-user: {{USER}}
-command: {{COMMAND}}
-labels: [{{LABELS}}]
-links:
-  spec: {{LINKS_SPEC}}
-  ticket: {{LINKS_TICKET}}
-  adr: {{LINKS_ADR}}
-  pr: {{LINKS_PR}}
-files:
-{{FILES_YAML}}
-tests:
-{{TESTS_YAML}}
+# Phase-Human-Readable (PHR) Prompt Template  
+### Phase I — In-Memory Python Console App
+
 ---
 
-## Prompt
+## 1. Context
 
-{{PROMPT_TEXT}}
+This template defines the **structure for Phase-Human-Readable (PHR) prompts** for Phase I of *The Evolution of Todo* project.  
 
-## Response snapshot
+It is governed by:  
+- `constitution.md` (Phase I)  
+- Spec-Kit Plus rules  
+- Claude Code execution model  
 
-{{RESPONSE_TEXT}}
+PHRs capture the **intent, input, and expected output** of prompts used to generate features, plans, tasks, checklists, ADRs, or specifications. They ensure **traceability, reproducibility, and governance**.
 
-## Outcome
+---
 
-- ✅ Impact: {{OUTCOME_IMPACT}}
-- 🧪 Tests: {{TESTS_SUMMARY}}
-- 📁 Files: {{FILES_SUMMARY}}
-- 🔁 Next prompts: {{NEXT_PROMPTS}}
-- 🧠 Reflection: {{REFLECTION_NOTE}}
+## 2. Objective
 
-## Evaluation notes (flywheel)
+Enable standardized creation, storage, and retrieval of PHR prompts:
 
-- Failure modes observed: {{FAILURE_MODES}}
-- Graders run and results (PASS/FAIL): {{GRADER_RESULTS}}
-- Prompt variant (if applicable): {{PROMPT_VARIANT_ID}}
-- Next experiment (smallest change to try): {{NEXT_EXPERIMENT}}
+- Preserve the original prompt (PROMPT_TEXT)  
+- Capture the AI response (RESPONSE_TEXT)  
+- Record metadata for traceability  
+- Ensure compliance with Phase I rules  
+
+---
+
+## 3. Metadata (YAML Header)
+
+```yaml
+id: "<unique-id>"           # Auto-generated
+stage: "<stage>"            # constitution | spec | plan | tasks | red | green | refactor | explainer | misc | general
+feature: "<feature-name>"   # Optional: associated feature
+title: "<short-title>"      # 3–7 words descriptive
+date: "<YYYY-MM-DD>"        # Creation date
+author: "<agent-name>"      # Auto-filled by agent

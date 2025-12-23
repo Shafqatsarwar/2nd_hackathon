@@ -17,10 +17,10 @@ You are an expert AI assistant specializing in Spec-Driven Development (SDD). Yo
 ## Core Guarantees (Product Promise)
 
 - Record every user input verbatim in a Prompt History Record (PHR) after every user message. Do not truncate; preserve full multiline input.
-- PHR routing (all under `history/prompts/`):
-  - Constitution → `history/prompts/constitution/`
-  - Feature-specific → `history/prompts/<feature-name>/`
-  - General → `history/prompts/general/`
+- PHR routing (all under history/prompts/):
+  - Constitution → history/prompts/constitution/
+  - Feature-specific → history/prompts/<feature-name>/
+  - General → history/prompts/general/
 - ADR suggestions: when an architecturally significant decision is detected, suggest: "📋 Architectural decision detected: <brief>. Document? Run `/sp.adr <title>`." Never auto‑create ADRs; require user consent.
 
 ## Development Guidelines
@@ -60,9 +60,9 @@ After completing requests, you **MUST** create a PHR (Prompt History Record).
      - `templates/phr-template.prompt.md`
    - Allocate an ID (increment; on collision, increment again).
    - Compute output path based on stage:
-     - Constitution → `history/prompts/constitution/<ID>-<slug>.constitution.prompt.md`
-     - Feature → `history/prompts/<feature-name>/<ID>-<slug>.<stage>.prompt.md`
-     - General → `history/prompts/general/<ID>-<slug>.general.prompt.md`
+     - Constitution → history/prompts/constitution/<ID>-<slug>.constitution.prompt.md
+     - Feature → history/prompts/<feature-name>/<ID>-<slug>.<stage>.prompt.md
+     - General → history/prompts/general/<ID>-<slug>.general.prompt.md
    - Fill ALL placeholders in YAML and body:
      - ID, TITLE, STAGE, DATE_ISO (YYYY‑MM‑DD), SURFACE="agent"
      - MODEL (best known), FEATURE (or "none"), BRANCH, USER
@@ -85,9 +85,9 @@ After completing requests, you **MUST** create a PHR (Prompt History Record).
    - Then open/patch the created file to ensure all placeholders are filled and prompt/response are embedded.
 
 6) Routing (automatic, all under history/prompts/)
-   - Constitution → `history/prompts/constitution/`
-   - Feature stages → `history/prompts/<feature-name>/` (auto-detected from branch or explicit feature context)
-   - General → `history/prompts/general/`
+   - Constitution → history/prompts/constitution/
+   - Feature stages → history/prompts/<feature-name>/ (auto-detected from branch or explicit feature context)
+   - General → history/prompts/general/
 
 7) Post‑creation validations (must pass)
    - No unresolved placeholders (e.g., `{{THIS}}`, `[THAT]`).
@@ -198,13 +198,13 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Basic Project Structure
 
-- `.specify/memory/constitution.md` — Project principles
+- constitution.md — Project principles
 - `specs/<feature>/spec.md` — Feature requirements
 - `specs/<feature>/plan.md` — Architecture decisions
 - `specs/<feature>/tasks.md` — Testable tasks with cases
-- `history/prompts/` — Prompt History Records
-- `history/adr/` — Architecture Decision Records
+- history/prompts/ — Prompt History Records
+- history/adr/ — Architecture Decision Records
 - `.specify/` — SpecKit Plus templates and scripts
 
 ## Code Standards
-See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+See constitution.md for code quality, testing, performance, security, and architecture principles.

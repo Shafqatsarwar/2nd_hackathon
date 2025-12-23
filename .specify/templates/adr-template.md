@@ -1,56 +1,77 @@
-# ADR-{{ID}}: {{TITLE}}
+# Architecture Decision Record (ADR) Template  
 
-> **Scope**: Document decision clusters, not individual technology choices. Group related decisions that work together (e.g., "Frontend Stack" not separate ADRs for framework, styling, deployment).
+---
 
-- **Status:** Proposed | Accepted | Superseded | Rejected
-- **Date:** {{DATE_ISO}}
-- **Feature:** {{FEATURE_NAME}}
-- **Context:** {{CONTEXT}}
+## Feature / Decision: [Decision Title]  
+### Phase I — In-Memory Python Console App
 
-<!-- Significance checklist (ALL must be true to justify this ADR)
-     1) Impact: Long-term consequence for architecture/platform/security?
-     2) Alternatives: Multiple viable options considered with tradeoffs?
-     3) Scope: Cross-cutting concern (not an isolated detail)?
-     If any are false, prefer capturing as a PHR note instead of an ADR. -->
+---
 
-## Decision
+### 1. Context
 
-{{DECISION}}
+This ADR captures the rationale for a specific architectural decision related to **[Feature / Decision Title]** for **Phase I** of *The Evolution of Todo* project.
 
-<!-- For technology stacks, list all components:
-     - Framework: Next.js 14 (App Router)
-     - Styling: Tailwind CSS v3
-     - Deployment: Vercel
-     - State Management: React Context (start simple)
--->
+This ADR is governed by:  
+- `constitution.md` (Phase I)  
+- Spec-Kit Plus rules  
+- Claude Code execution model  
 
-## Consequences
+---
 
-### Positive
+### 2. Decision
 
-{{POSITIVE_CONSEQUENCES}}
+State the decision clearly in one or two sentences.  
 
-<!-- Example: Integrated tooling, excellent DX, fast deploys, strong TypeScript support -->
+---
 
-### Negative
+### 3. Status
 
-{{NEGATIVE_CONSEQUENCES}}
+- Proposed / Accepted / Deprecated / Superseded  
 
-<!-- Example: Vendor lock-in to Vercel, framework coupling, learning curve -->
+---
 
-## Alternatives Considered
+### 4. Alternatives Considered
 
-{{ALTERNATIVES}}
+| Alternative | Pros | Cons |
+|------------|------|------|
+| [Alternative 1] | [List pros] | [List cons] |
+| [Alternative 2] | [List pros] | [List cons] |
+| [Alternative 3] | [List pros] | [List cons] |
 
-<!-- Group alternatives by cluster:
-     Alternative Stack A: Remix + styled-components + Cloudflare
-     Alternative Stack B: Vite + vanilla CSS + AWS Amplify
-     Why rejected: Less integrated, more setup complexity
--->
+---
 
-## References
+### 5. Rationale
 
-- Feature Spec: {{SPEC_LINK}}
-- Implementation Plan: {{PLAN_LINK}}
-- Related ADRs: {{RELATED_ADRS}}
-- Evaluator Evidence: {{EVAL_NOTES_LINK}} <!-- link to eval notes/PHR showing graders and outcomes -->
+Explain why the chosen decision was selected over alternatives. Include:  
+- Simplicity  
+- Compliance with Phase I constraints  
+- Ease of implementation with Claude Code  
+- Maintainability  
+
+---
+
+### 6. Implications
+
+- **Positive Impacts:** List benefits  
+- **Negative Impacts / Trade-offs:** List trade-offs or limitations  
+- **Constraints:** Confirm in-memory only, console I/O, no persistence/external services  
+
+---
+
+### 7. Dependencies
+
+- Related features, agents, or tasks  
+- In-memory data structures required  
+- Traceability to feature specifications  
+
+---
+
+### 8. References
+
+- `constitution.md` (Phase I)  
+- Related specifications (`spec-template.md`)  
+- Tasks and checklist templates  
+
+---
+
+**End of ADR Template**
