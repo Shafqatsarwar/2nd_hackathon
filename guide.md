@@ -118,7 +118,7 @@ Your project is ready to go!
 1.  **Create Repository**: Go to GitHub and create a new repository (e.g., `evolution-of-todo`).
 2.  **Push Code**:
     ```powershell
-    git remote add origin https://github.com/YOUR_USERNAME/evolution-of-todo.git
-    git branch -M main
-    git push -u origin main
+    git remote add origin https://github.com/Shafqatsarwar/2nd_hackathon.git
+    git branch -M master
+    git push -u origin master
     ```
