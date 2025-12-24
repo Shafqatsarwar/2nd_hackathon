@@ -122,3 +122,4 @@ Your project is ready to go!
     git branch -M master
     git push -u origin master
     ```
+    done
