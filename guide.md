@@ -112,4 +112,13 @@ This project follows strict **Agentic Development** principles.
 *   **Isolation**: Logic is separated into `src/cli`, `src/backend`, and `src/frontend`.
 *   **SDD Loop**: All features are Spec-Driven. See `specs/` for architectural decisions.
 *   **Security**: Use path/JWT based user isolation in all API endpoints.
-*   **Persistence**: Default to SQLite for local development; Neon for production.
+## 🚀 Pushing to GitHub
+Your project is ready to go!
+
+1.  **Create Repository**: Go to GitHub and create a new repository (e.g., `evolution-of-todo`).
+2.  **Push Code**:
+    ```powershell
+    git remote add origin https://github.com/YOUR_USERNAME/evolution-of-todo.git
+    git branch -M main
+    git push -u origin main
+    ```
