@@ -2,14 +2,14 @@ import { betterAuth } from "better-auth";
 import { jwt } from "better-auth/plugins";
 
 export const auth = betterAuth({
-    database: process.env.DATABASE_URL
+    database: process.env.DATABASE_URL?.startsWith("postgres")
         ? {
             provider: "postgresql",
             url: process.env.DATABASE_URL,
         }
         : {
             provider: "sqlite",
-            url: "auth.db",
+            url: process.env.DATABASE_URL?.replace("sqlite:///", "") || "auth.db",
         },
     emailAndPassword: {
         enabled: true
