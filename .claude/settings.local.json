@@ -85,7 +85,8 @@
       "Bash(git filter-branch -f --tree-filter 'find . -name \"\"*.env\"\" -type f -exec sed -i \"\"s|sk-...REDACTED...|your_openai_api_key_here|g\"\" {} \\\\;' HEAD)",
       "Bash(git fetch origin)",
       "Bash(git init)",
-      "Bash(git commit -m \"Complete Phase I-III implementation with MCP integration and AI features\n\n- Implemented full-stack todo application with Next.js frontend and FastAPI backend\n- Added MCP \\(Model Context Protocol\\) integration for AI agents\n- Integrated Better Auth for authentication\n- Added placeholder values to .env.example files for Phase III AI integration\n- Implemented NLP agent for natural language task management\n- Created MCP tools for AI-mediated intent processing\n- Ensured all architecture follows constitution requirements\n- Cleaned up extra files and configured proper gitignore for sensitive files\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>\")"
+      "Bash(git commit -m \"Complete Phase I-III implementation with MCP integration and AI features\n\n- Implemented full-stack todo application with Next.js frontend and FastAPI backend\n- Added MCP \\(Model Context Protocol\\) integration for AI agents\n- Integrated Better Auth for authentication\n- Added placeholder values to .env.example files for Phase III AI integration\n- Implemented NLP agent for natural language task management\n- Created MCP tools for AI-mediated intent processing\n- Ensured all architecture follows constitution requirements\n- Cleaned up extra files and configured proper gitignore for sensitive files\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>\")",
+      "Bash(dir \"D:\\\\Panavers\\\\2nd_hackathon\\\\.specify\" /s)"
     ]
   }
 }
