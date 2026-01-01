@@ -1,0 +1,14 @@
+# Spec-Kit Configuration for The Evolution of Todo
+
+spec_directory: ./specs
+output_directory: ./src
+template_engine: handlebars
+validation:
+  enabled: true
+  schema_path: ./specs/schema.json
+generation:
+  overwrite_policy: safe
+  backup_enabled: true
+hooks:
+  pre_generate: []
+  post_generate: []

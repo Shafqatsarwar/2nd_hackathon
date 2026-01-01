@@ -1,0 +1,36 @@
+{
+  "name": "todo-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:migrate": "npx tsx ../../scripts/init-db.ts"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@vercel/postgres": "^0.10.0",
+    "autoprefixer": "10.4.23",
+    "better-auth": "^1.4.9",
+    "better-sqlite3": "^12.5.0",
+    "dotenv": "^17.2.3",
+    "next": "^16.1.1",
+    "pg": "^8.16.3",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "openai": "^4.77.0",
+    "openai-chatkit": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.2",
+    "postcss": "8.5.6",
+    "tailwindcss": "3.4.19",
+    "typescript": "^5"
+  }
+}
