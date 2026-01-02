@@ -11,13 +11,13 @@ The engineer's role is system architect, not syntax writer.
 ❌ No handwritten application code
 ✅ All code is generated via Claude Code from validated specs
 
-## 🏗️ Current Phase: Phase II - Full-Stack Web Application
+## 🏗️ Current Phase: Phase III - AI-Powered Todo Chatbot
 - **Frontend**: Next.js 16+ (App Router) with Better Auth
 - **Backend**: Python FastAPI with PostgreSQL
 - **Authentication**: Better Auth (JWT-based)
 - **ORM**: SQLModel
 - **Database**: Neon Serverless PostgreSQL
-- **AI Integration**: MCP-powered assistant capabilities
+- **AI Integration**: MCP-powered assistant capabilities with dedicated chatbot interface
 
 ## 🚀 Phases
 
@@ -32,11 +32,14 @@ The engineer's role is system architect, not syntax writer.
 - Backend is the system of record
 - Frontend never directly accesses database
 
-### Phase III: AI-Powered Todo Chatbot (Next)
+### Phase III: AI-Powered Todo Chatbot (Implemented)
 - Replace UI-driven CRUD with **AI-mediated intent**
 - Stateless backend
 - AI agents never access DB directly
 - All actions go through MCP tools
+- Dedicated AI Assistant interface at /chatbot
+- Guest Mode AI chat available via "G" button
+- Natural language processing for task management
 
 ### Phase IV: Local Kubernetes Deployment
 - Prove the system is **cloud-native**, not cloud-hosted

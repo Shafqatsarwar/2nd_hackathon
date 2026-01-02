@@ -1,4 +1,4 @@
-# 🚀 The Evolution of Todo - Phase II Deployment Guide
+# 🚀 The Evolution of Todo - Phase III Deployment Guide
 
 ## 🌟 Project Overview
 This project represents the evolution of a simple CLI Todo list into a full-stack AI-powered Web Application.
@@ -34,7 +34,15 @@ npm run dev
 ##  Key Features & Usage
 
 ### 1. Guest Mode (The Sandbox)
-*   Click the **'G' Badge** in the bottom-right## 📘 Environment Variables Master Class
+*   Click the **'G' Badge** in the bottom-right corner for quick AI chat access
+*   Provides temporary guest session for trying the AI assistant
+
+### 2. Dedicated AI Assistant
+*   Visit **/chatbot** for a full-featured chat interface
+*   Clean, focused environment for AI task management
+*   Includes chat history and clear functionality
+
+## 📘 Environment Variables Master Class
 
 This section explains every key you need, why you need it, and where to get it.
 
@@ -62,6 +70,13 @@ This section explains every key you need, why you need it, and where to get it.
 *   **What it is**: The URL of your website itself.
 *   **Local**: `http://localhost:3000`
 *   **Vercel**: `https://your-app-name.vercel.app`
+
+### 5. `OPENAI_API_KEY` (AI Integration - Optional)
+*   **What it is**: API key for OpenAI integration (for Phase III AI features)
+*   **Note**: This is optional and only needed for advanced AI features
+*   **Local**: Add to your `.env` file (not in example files for security)
+*   **Get from**: [OpenAI Platform](https://platform.openai.com/api-keys)
+*   **Example**: `sk-...your-key-here...`
 
 ---
 
