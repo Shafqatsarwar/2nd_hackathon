@@ -13,7 +13,7 @@ This project represents the evolution of a simple CLI Todo list into a full-stac
 ### 1. Start the Backend (The Core)
 The backend powers the logic and database connections.
 ```powershell
-cd src/backend
+cd src/backend uv sync
 uv run uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
