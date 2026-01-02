@@ -31,7 +31,7 @@ export default function SignInPage() {
           rememberMe: true,
         });
         if (signInError) {
-          setError(signInError.message);
+          setError(signInError.message || "Sign in failed");
           return;
         }
       } else {
@@ -41,7 +41,7 @@ export default function SignInPage() {
           password: form.password,
         });
         if (signUpError) {
-          setError(signUpError.message);
+          setError(signUpError.message || "Sign up failed");
           return;
         }
       }

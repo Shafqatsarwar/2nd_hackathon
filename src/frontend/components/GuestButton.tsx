@@ -49,7 +49,7 @@ export default function GuestButton() {
                         </div>
                     </div>
 
-                    <TaskInterface userId="guest_user" token="guest_token" title="" />
+                    <TaskInterface userId="guest_user" token="guest_token" title="AI Assistant" />
 
                     <p className="mt-8 text-[10px] text-slate-600 text-center uppercase tracking-widest leading-relaxed">
                         Data is shared globally in this demo environment.

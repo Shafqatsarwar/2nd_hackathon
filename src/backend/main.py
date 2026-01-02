@@ -2,12 +2,12 @@ from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session, select
 from typing import List, Dict, Any
-from .database import create_db_and_tables, get_session
-from .models import Task, TaskCreate, TaskUpdate, User
-from .auth_utils import verify_jwt
-from .mcp_config import get_mcp_config, is_mcp_enabled
+from database import create_db_and_tables, get_session
+from models import Task, TaskCreate, TaskUpdate, User
+from auth_utils import verify_jwt
+from mcp_config import get_mcp_config, is_mcp_enabled
 
-app = FastAPI(title="The Evolution of Todo - Phase II")
+app = FastAPI(title="The Evolution of Todo - Phase III")
 
 @app.on_event("startup")
 def on_startup():
@@ -24,7 +24,7 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to Phase II Backend", "status": "Ready"}
+    return {"message": "Welcome to Phase III Backend", "status": "Ready"}
 
 # --- TASK CRUD ENDPOINTS ---
 
@@ -254,7 +254,14 @@ def get_auth_context():
 
 
 # --- AGENT ENDPOINTS (PHASE III) ---
-from agents.orchestrator import orchestrator
+try:
+    from agents.orchestrator import orchestrator
+except ImportError:
+    # Fallback for when running directly
+    import sys
+    import os
+    sys.path.append(os.path.join(os.path.dirname(__file__), 'agents'))
+    from orchestrator import orchestrator
 from pydantic import BaseModel
 
 class AgentRequest(BaseModel):
@@ -281,7 +288,14 @@ def consult_agent(request: AgentRequest):
 
 
 # --- PHASE III: AI-POWERED CHATBOT ENDPOINTS ---
-from agents.skills.mcp_agent_interface import mcp_todo_agent
+try:
+    from agents.skills.mcp_agent_interface import mcp_todo_agent
+except ImportError:
+    # Fallback for when running directly
+    import sys
+    import os
+    sys.path.append(os.path.join(os.path.dirname(__file__), 'agents', 'skills'))
+    from mcp_agent_interface import mcp_todo_agent
 from pydantic import BaseModel
 
 

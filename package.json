@@ -1,6 +1,30 @@
 {
+  "name": "the-evolution-of-todo",
+  "version": "1.0.0",
+  "description": "The Evolution of Todo - Hackathon II: Spec-Driven Cloud-Native AI Todo System",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd src/frontend && npm run dev",
+    "dev:backend": "cd src/backend && python -m uvicorn main:app --reload",
+    "build": "cd src/frontend && npm run build",
+    "start": "cd src/frontend && npm start",
+    "install:frontend": "cd src/frontend && npm install",
+    "install:backend": "pip install -e src/backend",
+    "install:all": "npm run install:frontend && npm run install:backend",
+    "migrate": "cd src/frontend && npm run db:migrate"
+  },
   "dependencies": {
     "dotenv": "^17.2.3",
     "pg": "^8.16.3"
-  }
+  },
+  "keywords": [
+    "todo",
+    "nextjs",
+    "fastapi",
+    "ai",
+    "mcp",
+    "spec-driven"
+  ],
+  "author": "Hackathon Team",
+  "license": "MIT"
 }

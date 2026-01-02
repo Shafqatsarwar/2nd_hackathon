@@ -1,48 +1,37 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { createAuthClient } from "better-auth/react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import TaskInterface from "../../components/TaskInterface";
-import SignOutButton from "../../components/SignOutButton";
+import ChatbotInterface from "../../components/ChatbotInterface";
 
-const authClient = createAuthClient();
-
-export default function DashboardPage() {
+export default function ChatbotPage() {
     const [session, setSession] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-    const router = useRouter();
 
     useEffect(() => {
-        async function init() {
-            // Check for special Admin login first
-            const isAdmin = localStorage.getItem("admin_access") === "true";
-            if (isAdmin) {
-                setSession({
-                    user: { id: "admin", name: "Khan Sarwar", email: "khansarwar1@hotmail.com" },
-                    token: "admin_token"
-                });
-                setLoading(false);
-                return;
-            }
-
-            const { data } = await authClient.getSession();
-            if (!data) {
-                router.push("/auth");
-                return;
-            }
-            setSession(data);
+        // Check for special Admin login first
+        const isAdmin = localStorage.getItem("admin_access") === "true";
+        if (isAdmin) {
+            setSession({
+                user: { id: "admin", name: "Khan Sarwar", email: "khansarwar1@hotmail.com" },
+                token: "admin_token"
+            });
             setLoading(false);
+            return;
         }
-        init();
-    }, []);
 
-    const handleLogout = async () => {
-        localStorage.removeItem("admin_access");
-        await authClient.signOut();
-        router.push("/auth");
-    };
+        // Check for regular session
+        const sessionData = localStorage.getItem("better-auth-session");
+        if (sessionData) {
+            try {
+                const parsed = JSON.parse(sessionData);
+                setSession(parsed);
+            } catch (e) {
+                console.error("Error parsing session data:", e);
+            }
+        }
+
+        setLoading(false);
+    }, []);
 
     if (loading) return (
         <div className="min-h-screen bg-neutral-950 flex items-center justify-center">
@@ -50,8 +39,8 @@ export default function DashboardPage() {
         </div>
     );
 
-    const userId = session.user.id;
-    const token = (session as any).token;
+    const userId = session?.user?.id || "guest_user";
+    const token = session?.token || "guest_token";
 
     return (
         <div className="min-h-screen bg-neutral-950 text-slate-200 font-sans p-4 md:p-12 relative overflow-hidden">
@@ -67,35 +56,27 @@ export default function DashboardPage() {
                             <div className="h-[1px] w-8 bg-purple-500/30" />
                         </div>
                         <h1 className="text-5xl font-black text-white tracking-tight">
-                            Private Vault
+                            AI Assistant
                         </h1>
                         <p className="text-slate-500 mt-2 text-lg">
-                            Welcome back, {session.user.name.split(' ')[0]}. Synchronizing your vault.
+                            Your AI-powered task management assistant.
                         </p>
-                    </div>
-
-                    <div className="flex items-center gap-6">
-                        <div className="text-right hidden md:block">
-                            <p className="text-sm font-bold text-white">{session.user.name}</p>
-                            <p className="text-xs text-slate-500">{session.user.email}</p>
-                        </div>
-                        <SignOutButton />
                     </div>
                 </header>
 
                 <div className="grid grid-cols-1 gap-12">
                     <section className="relative">
-                        <TaskInterface
+                        <ChatbotInterface
                             userId={userId}
                             token={token}
-                            title="Private Objectives"
+                            title="AI Chat Interface"
                         />
                     </section>
                 </div>
 
                 <footer className="mt-24 pt-12 border-t border-white/5 text-center">
                     <p className="text-slate-600 text-sm">
-                        Evolution of Todo &bull; Designed by Product Architects
+                        Evolution of Todo &bull; AI-Powered Task Management
                     </p>
                 </footer>
             </div>

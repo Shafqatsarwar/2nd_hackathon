@@ -87,7 +87,13 @@
       "Bash(git init)",
       "Bash(git commit -m \"Complete Phase I-III implementation with MCP integration and AI features\n\n- Implemented full-stack todo application with Next.js frontend and FastAPI backend\n- Added MCP \\(Model Context Protocol\\) integration for AI agents\n- Integrated Better Auth for authentication\n- Added placeholder values to .env.example files for Phase III AI integration\n- Implemented NLP agent for natural language task management\n- Created MCP tools for AI-mediated intent processing\n- Ensured all architecture follows constitution requirements\n- Cleaned up extra files and configured proper gitignore for sensitive files\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>\")",
       "Bash(dir \"D:\\\\Panavers\\\\2nd_hackathon\\\\.specify\" /s)",
-      "Bash(git commit -m \"Clean up unnecessary root files - keeping only essential project structure\n\n- Removed legacy files from root directory\n- Kept only essential project structure: src/, specs/, history/, .specify/\n- Maintained proper architecture for all three phases \\(I-III\\)\n- Preserved constitution, documentation, and configuration files\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>\")"
+      "Bash(git commit -m \"Clean up unnecessary root files - keeping only essential project structure\n\n- Removed legacy files from root directory\n- Kept only essential project structure: src/, specs/, history/, .specify/\n- Maintained proper architecture for all three phases \\(I-III\\)\n- Preserved constitution, documentation, and configuration files\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>\")",
+      "Bash(dir \"D:\\\\Panavers\\\\2nd_hackathon\")",
+      "Bash(dir \"D:\\\\Panavers\\\\2nd_hackathon\\\\src\")",
+      "Bash(python -m pip install fastapi psycopg2-binary pyjwt python-dotenv requests sqlmodel uvicorn sse-starlette websockets pydantic pydantic-settings openai)",
+      "Bash(python -m uvicorn main:app --host 127.0.0.1 --port 800 --reload)",
+      "Bash(curl http://localhost:3000)",
+      "Bash(curl -X POST http://127.0.0.1:800/api/ai/chat -H \"Content-Type: application/json\" -d \"{\"\"user_id\"\": \"\"test_user\"\", \"\"query\"\": \"\"Add a task to buy groceries\"\"}\")"
     ]
   }
 }

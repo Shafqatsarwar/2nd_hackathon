@@ -3,23 +3,23 @@ import { cookies } from 'next/headers';
 
 // Handle all HTTP methods for backend proxy
 export async function GET(request: NextRequest) {
-  return handleRequest(request, 'GET');
+  return await handleRequest(request, 'GET');
 }
 
 export async function POST(request: NextRequest) {
-  return handleRequest(request, 'POST');
+  return await handleRequest(request, 'POST');
 }
 
 export async function PUT(request: NextRequest) {
-  return handleRequest(request, 'PUT');
+  return await handleRequest(request, 'PUT');
 }
 
 export async function PATCH(request: NextRequest) {
-  return handleRequest(request, 'PATCH');
+  return await handleRequest(request, 'PATCH');
 }
 
 export async function DELETE(request: NextRequest) {
-  return handleRequest(request, 'DELETE');
+  return await handleRequest(request, 'DELETE');
 }
 
 async function handleRequest(request: NextRequest, method: string) {
@@ -44,9 +44,10 @@ async function handleRequest(request: NextRequest, method: string) {
     // Get the auth token from cookies (Better Auth stores session tokens)
     // Better Auth typically stores the session token in a cookie
     // The exact name depends on the configuration, but common names include:
-    const authCookie = cookies().get('better-auth.session_token') ||
-                      cookies().get('session') ||
-                      cookies().get('auth_token');
+    const allCookies = await cookies();
+    const authCookie = allCookies.get('better-auth.session_token') ||
+                      allCookies.get('session') ||
+                      allCookies.get('auth_token');
     const authHeader = authCookie ? `Bearer ${authCookie.value}` : null;
 
     // Get request body if present

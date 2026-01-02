@@ -3,7 +3,14 @@ MCP Agent Interface for Phase III AI Integration
 Provides standardized interfaces for AI agents to interact with the system
 """
 from typing import Dict, Any, Optional
-from .todo_mcp_tools import todo_mcp_tools
+try:
+    from .todo_mcp_tools import todo_mcp_tools
+except (ImportError, ValueError):
+    # Fallback for direct execution
+    import sys
+    import os
+    sys.path.append(os.path.join(os.path.dirname(__file__)))
+    from todo_mcp_tools import todo_mcp_tools
 
 
 class MCPTodoAgentInterface:

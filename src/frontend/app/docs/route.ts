@@ -38,7 +38,8 @@ async function handleRequest(request: NextRequest, method: string) {
     }
 
     // Get the auth token from cookies (Better Auth stores it in cookies)
-    const authCookie = cookies().get('better-auth.session_token');
+    const allCookies = await cookies();
+    const authCookie = allCookies.get('better-auth.session_token');
     const authHeader = authCookie ? `Bearer ${authCookie.value}` : null;
 
     // Get request body if present

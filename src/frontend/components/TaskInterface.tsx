@@ -8,9 +8,10 @@ interface TaskInterfaceProps {
     userId: string;
     token: string;
     title?: string;
+    onClear?: () => void; // Optional callback for clearing tasks
 }
 
-export default function TaskInterface({ userId, token, title = "Evolution Task Matrix" }: TaskInterfaceProps) {
+export default function TaskInterface({ userId, token, title = "Evolution Task Matrix", onClear }: TaskInterfaceProps) {
     const [tasks, setTasks] = useState<any[]>([]);
     const [newTitle, setNewTitle] = useState("");
     const [loading, setLoading] = useState(true);
@@ -88,14 +89,43 @@ export default function TaskInterface({ userId, token, title = "Evolution Task M
         }
     };
 
+    const clearAllTasks = async () => {
+        try {
+            // Delete all tasks one by one
+            for (const task of tasks) {
+                await fetch(`${BACKEND_URL}/api/${userId}/tasks/${task.id}`, {
+                    method: "DELETE",
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+            }
+            setTasks([]); // Clear the local state
+            if (onClear) {
+                onClear(); // Call the optional callback
+            }
+        } catch (err) {
+            console.error("Error clearing all tasks:", err);
+        }
+    };
+
     if (loading) return <div className="text-slate-500 py-10 text-center animate-pulse">Scanning matrix...</div>;
 
     return (
         <div className="w-full max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <span className="w-2 h-2 bg-purple-500 rounded-full animate-ping" />
-                {title}
-            </h2>
+            <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                    <span className="w-2 h-2 bg-purple-500 rounded-full animate-ping" />
+                    {title}
+                </h2>
+                {tasks.length > 0 && (
+                    <button
+                        onClick={clearAllTasks}
+                        className="text-xs bg-red-900/50 hover:bg-red-800/50 text-red-300 px-3 py-1 rounded-lg transition-colors"
+                        title="Clear All Tasks"
+                    >
+                        Clear All
+                    </button>
+                )}
+            </div>
 
             <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 mb-8 shadow-2xl backdrop-blur-sm">
                 <div className="flex gap-4">

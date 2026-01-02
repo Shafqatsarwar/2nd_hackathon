@@ -3,7 +3,7 @@ import "./globals.css";
 import GuestButton from "../components/GuestButton";
 
 export const metadata: Metadata = {
-    title: "The Evolution of Todo - Phase II",
+    title: "The Evolution of Todo - Phase III",
     description: "Next.js + FastAPI Todo App",
 };
 

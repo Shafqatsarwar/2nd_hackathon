@@ -5,8 +5,16 @@ All actions go through MCP tools as required by Phase III architecture.
 """
 from typing import List, Dict, Any, Optional
 from sqlmodel import Session, select
-from ..models import Task, User, TaskCreate, TaskUpdate
-from ..database import get_session
+try:
+    from ..models import Task, User, TaskCreate, TaskUpdate
+    from ..database import get_session
+except (ImportError, ValueError):
+    # Fallback for direct execution
+    import sys
+    import os
+    sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+    from models import Task, User, TaskCreate, TaskUpdate
+    from database import get_session
 
 
 class TodoMCPTasks:
@@ -16,7 +24,29 @@ class TodoMCPTasks:
     """
 
     def __init__(self, session_getter=None):
-        self.get_session = session_getter or get_session
+        # Import the database module to get the session
+        if session_getter is None:
+            # Store a reference to the get_session function
+            try:
+                from ..database import get_session
+                self.get_session_func = get_session
+            except (ImportError, ValueError):
+                # Fallback for direct execution
+                import sys
+                import os
+                sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+                from database import get_session
+                self.get_session_func = get_session
+
+            # Define a method to get the session
+            def get_session_method():
+                # Get the session from the generator
+                session_generator = self.get_session_func()
+                session = next(session_generator)
+                return session
+            self.get_session = get_session_method
+        else:
+            self.get_session = session_getter
 
     def list_tasks(self, user_id: str, status: str = "all") -> List[Dict[str, Any]]:
         """
@@ -48,7 +78,10 @@ class TodoMCPTasks:
         Create a new task for a user.
         MCP Tool for AI agents to create tasks.
         """
-        with self.get_session() as session:
+        # Get the session generator and extract the session
+        session_gen = self.get_session_func()
+        session = next(session_gen)
+        try:
             task_data = TaskCreate(title=title, description=description or "")
             db_task = Task.model_validate(task_data, update={"user_id": user_id})
             session.add(db_task)
@@ -62,6 +95,9 @@ class TodoMCPTasks:
                 "description": db_task.description,
                 "completed": db_task.completed
             }
+        finally:
+            # Close the session properly
+            session.close()
 
     def update_task(self, user_id: str, task_id: int, title: Optional[str] = None,
                     description: Optional[str] = None) -> Dict[str, Any]:
@@ -69,7 +105,9 @@ class TodoMCPTasks:
         Update an existing task.
         MCP Tool for AI agents to modify tasks.
         """
-        with self.get_session() as session:
+        session_gen = self.get_session_func()
+        session = next(session_gen)
+        try:
             db_task = session.exec(
                 select(Task).where(Task.id == task_id, Task.user_id == user_id)
             ).first()
@@ -94,13 +132,17 @@ class TodoMCPTasks:
                 "status": "updated",
                 "title": db_task.title
             }
+        finally:
+            session.close()
 
     def complete_task(self, user_id: str, task_id: int) -> Dict[str, Any]:
         """
         Mark a task as completed.
         MCP Tool for AI agents to toggle task completion.
         """
-        with self.get_session() as session:
+        session_gen = self.get_session_func()
+        session = next(session_gen)
+        try:
             db_task = session.exec(
                 select(Task).where(Task.id == task_id, Task.user_id == user_id)
             ).first()
@@ -121,13 +163,17 @@ class TodoMCPTasks:
                 "status": "completed",
                 "title": db_task.title
             }
+        finally:
+            session.close()
 
     def delete_task(self, user_id: str, task_id: int) -> Dict[str, Any]:
         """
         Delete a task.
         MCP Tool for AI agents to remove tasks.
         """
-        with self.get_session() as session:
+        session_gen = self.get_session_func()
+        session = next(session_gen)
+        try:
             db_task = session.exec(
                 select(Task).where(Task.id == task_id, Task.user_id == user_id)
             ).first()
@@ -146,6 +192,8 @@ class TodoMCPTasks:
                 "status": "deleted",
                 "title": db_task.title
             }
+        finally:
+            session.close()
 
 
 # Global instance of the MCP tools (using default session getter)
