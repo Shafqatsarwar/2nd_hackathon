@@ -14,10 +14,12 @@ This project represents the evolution of a simple CLI Todo list into a full-stac
 The backend powers the logic and database connections.
 ```powershell
 cd src/backend
-uv run uvicorn main:app --host 0.0.0.0 --port 800 --reload
+uv run uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
 ```
-*   **Health Check**: Open `http://localhost:800/health` → `{"status": "healthy"}`
-*   **Docs**: Open `http://localhost:800/docs` for Swagger UI.
+*   **Health Check**: Open `http://localhost:8000/health` → `{"status": "healthy"}`
+*   **Docs**: Open `http://localhost:8000/docs` for Swagger UI.
 
 
 ### 2. Start the Frontend (The Interface)
@@ -30,6 +32,12 @@ npm run dev
 *   **Note**: The app automatically connects to the backend on port 800.
 
 ---
+### 3. Contribution & CLI
+Legacy Phase I CLI tools are preserved in `src/cli`.
+To run the original CLI:
+```powershell
+uv run python src/cli/main.py
+```
 
 ##  Key Features & Usage
 
@@ -63,7 +71,7 @@ This section explains every key you need, why you need it, and where to get it.
 
 ### 3. `NEXT_PUBLIC_BACKEND_URL` (The Bridge)
 *   **What it is**: Tells the Frontend where the Backend lives.
-*   **Local**: `http://127.0.0.1:800`
+*   **Local**: `http://127.0.0.1:8000`
 *   **Vercel**: `https://your-app-name.vercel.app/api` (If using Unified Deployment).
 
 ### 4. `NEXT_PUBLIC_BETTER_AUTH_URL` (The Home)
@@ -86,7 +94,7 @@ This section explains every key you need, why you need it, and where to get it.
 ```env
 DATABASE_URL="sqlite:///todo.db"
 BETTER_AUTH_SECRET="local_dev_secret"
-NEXT_PUBLIC_BACKEND_URL="http://127.0.0.1:800"
+NEXT_PUBLIC_BACKEND_URL="http://127.0.0.1:8000"
 NEXT_PUBLIC_BETTER_AUTH_URL="http://localhost:3000"
 ```
 
@@ -258,15 +266,6 @@ When testing the Backend via Swagger (`/docs`) or cURL, you can bypass login usi
 *   **Usage**: In the "Authorize" box, type: `admin_token` (or `Bearer admin_token` in headers).
 *   **Effect**: Grants immediate access as the `admin` user.
 
-
----
-
-##  Contribution & CLI
-Legacy Phase I CLI tools are preserved in `src/cli`.
-To run the original CLI:
-```powershell
-uv run python src/cli/main.py
-```
 
 ---
 
